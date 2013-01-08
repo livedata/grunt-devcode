@@ -1,0 +1,56 @@
+{
+  "name": "grunt-devcode",
+  "description": "Remove code blocks based on environment configuration",
+  "version": "0.1.0",
+  "homepage": "https://github.com/livedata/grunt-devcode",
+  "author": {
+    "name": "Krzysztof Antczak",
+    "email": "k.antczak@inventic.it",
+    "url": "http://inventic.it/"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/livedata/grunt-devcode.git"
+  },
+  "bugs": {
+    "url": "https://github.com/livedata/grunt-devcode/issues"
+  },
+  "licenses": [
+    {
+      "type": "Apache",
+      "url": "https://github.com/livedata/grunt-devcode/blob/master/LICENSE"
+    }
+  ],
+  "main": "Gruntfile.js",
+  "bin": {
+    "grunt-devcode": "bin/grunt-devcode"
+  },
+  "engines": {
+    "node": ">= 0.6.0"
+  },
+  "scripts": {
+    "test": "grunt test"
+  },
+  "dependencies": {
+    "grunt": "~0.3.15"
+  },
+  "devDependencies": {
+    "grunt": "~0.4.0a"
+  },
+  "keywords": [
+    "gruntplugin",
+    "directive",
+    "var",
+    "ENV",
+    "environment",
+    "ifdef",
+    "echo",
+    "include",
+    "exclude",
+    "process",
+    "yeoman",
+    "pragma"
+  ],
+  "_id": "grunt-devcode@0.0.1",
+  "_from": "grunt-devcode"
+}

@@ -21,7 +21,7 @@ Build task configuration:
   grunt.registerTask('build', 'original-build devcode');
 ```
 
- devcode configuration:
+ Devcode configuration:
 ```
   devcode :
   {
@@ -37,6 +37,26 @@ Build task configuration:
       }
     }
   }
+```
+
+Devcode usage (html files):
+```
+<!-- devcode: !production -->
+  <li class="right"><a href="#settings" data-toggle="tab">Settings</a></li>
+<!-- endcode -->
+
+this code will show for all environment types but production
+```
+
+Devcode usage (js and css files):
+```
+// devcode: !production
+  body {
+    background-color: red;
+  }
+// endcode
+
+this code will show for all environment types but production
 ```
 
 Test:

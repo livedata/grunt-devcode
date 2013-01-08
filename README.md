@@ -35,7 +35,8 @@ Build task configuration:
       block: {
         open: 'devcode', // with this string we open a block of code
         close: 'endcode' // with this string we close a block of code
-      }
+      },
+      dest: 'dist'       // default destination which is overwritten by environment variable
     }
   }
 

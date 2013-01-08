@@ -29,7 +29,7 @@ function init(grunt)
 
         var cOpen   = this.data.block.open || 'devcode';
         var cClose  = this.data.block.close || 'endcode';
-        var workDir = path.resolve(process.cwd(), context.DEST);
+        var workDir = path.resolve(this.data.dest);
         var _this   = this;
 
         var replaceCode = function ( files, type )
@@ -56,7 +56,6 @@ function init(grunt)
                 body = body.replace(regex, function($0, $1)
                 {
                     var m = $1.replace(/^\s+|\s+$/g, ''); // trim
-                    if ( type == 'js' ) { console.log(' >> ',m); }
 
                     if ( m.indexOf('!') == -1 )
                     {

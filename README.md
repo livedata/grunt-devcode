@@ -13,12 +13,13 @@ Installation:
 Loading devcode into grunt
 ```
   grunt.loadNpmTasks('grunt-devcode');
+  grunt.loadNpmTasks('grunt-env');
 ```
 
 Build task configuration:
 ```
   grunt.renameTask('build', 'original-build');
-  grunt.registerTask('build', 'original-build devcode');
+  grunt.registerTask('build', 'original-build env:build devcode');
 ```
 
  Devcode configuration:
@@ -35,6 +36,18 @@ Build task configuration:
         open: 'devcode', // with this string we open a block of code
         close: 'endcode' // with this string we close a block of code
       }
+    }
+  }
+
+  // environment settings
+  env : {
+    dev : {
+      NODE_ENV : 'development',
+      DEST     : 'temp'
+    },
+    build : {
+      NODE_ENV : 'production',
+      DEST     : 'dist'
     }
   }
 ```

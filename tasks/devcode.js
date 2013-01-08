@@ -52,7 +52,7 @@ function init(grunt)
 
                 var regex = new RegExp(startblock + '[\\s\\S]*?' + endblock + '[\\s\\r\\n]?', 'g');
 
-                // replace code accordingly to current environment
+                // replace code according to current environment
                 body = body.replace(regex, function($0, $1)
                 {
                     var m = $1.replace(/^\s+|\s+$/g, ''); // trim

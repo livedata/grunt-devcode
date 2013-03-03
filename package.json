@@ -1,7 +1,7 @@
 {
   "name": "grunt-devcode",
   "description": "Remove code blocks based on environment configuration",
-  "version": "0.0.3",
+  "version": "0.0.3a",
   "homepage": "https://github.com/livedata/grunt-devcode",
   "author": {
     "name": "Krzysztof Antczak",
@@ -48,6 +48,6 @@
     "exclude",
     "yeoman"
   ],
-  "_id": "grunt-devcode@0.0.2",
+  "_id": "grunt-devcode@0.0.3a",
   "_from": "grunt-devcode"
 }

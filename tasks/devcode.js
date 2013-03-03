@@ -14,7 +14,7 @@ module.exports = init;
 var grunt = require('grunt'),
     path = require('path');
 
-var _ = grunt.utils._;
+var _ = grunt.util._;
 var defaultEnv = {};
 
 function init(grunt)
@@ -41,7 +41,7 @@ function init(grunt)
                 var startblock = '\/\/\\s*'+cOpen+':\\s*?([^\\n]+)';
                 var endblock   = '\/\/\\s*'+cClose+'\\s*';
             }
-            console.log(files);
+
             files.forEach(function(file)
             {
                 file = path.resolve(workDir,file);

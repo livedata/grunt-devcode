@@ -1,3 +1,7 @@
+# Devcode v.0.0.3
+
+Version with upgraded grunt dependency to 0.4.0, for older release please refer to https://github.com/livedata/grunt-devcode/tree/0.0.2
+
 # Usage with Yeoman grunt file:
 
 Devcode is  a fork of grunt-preprocess project, which has been re-written from scratch at the end. Due to the problems I had with that library, along with an excessive amount of code (additional dependency from "preprocess") and I suppose not fully tested functionality.
@@ -16,10 +20,53 @@ Loading devcode into grunt
   grunt.loadNpmTasks('grunt-env');
 ```
 
-Build task configuration:
+Build task configuration (only for yeoman <1.0 !):
 ```
   grunt.renameTask('build', 'original-build');
   grunt.registerTask('build', 'original-build env:build devcode');
+```
+
+Build task configuration (for yeoman >=1.0.0-beta.3)
+```
+  // Build tasks list before
+  grunt.registerTask('build', [
+    'clean:dist',
+    'jshint',
+    'test',
+    'coffee',
+    'compass:dist',
+    'useminPrepare',
+    'imagemin',
+    'cssmin',
+    'htmlmin',
+    'concat',
+    'copy',
+    'cdnify',
+    'usemin',
+    'ngmin',
+    'uglify'
+  ]);
+
+  // Build tasks list AFTER
+  grunt.registerTask('build', [
+    'env:build', // environment configuration
+    'clean:dist',
+    'jshint',
+    'test',
+    'coffee',
+    'compass:dist',
+    'useminPrepare',
+    'imagemin',
+    'cssmin',
+    'htmlmin',
+    'concat',
+    'copy',
+    'devcode', // devcode... we need to register it AFTER dist/* exists (for .html files)
+    'cdnify',
+    'usemin',
+    'ngmin',
+    'uglify'
+  ]);
 ```
 
  Devcode configuration:
@@ -73,9 +120,14 @@ Devcode usage (js and css files):
 this code will show for all environment types but production
 ```
 
-Test:
+Test (only for yeoman <1.0 !):
 ```
   yeoman build
+```
+
+Test (for yeoman >=1.0.0-beta.3)
+```
+  grunt build
 ```
 
 ## Todo

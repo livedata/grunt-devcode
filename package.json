@@ -1,7 +1,7 @@
 {
   "name": "grunt-devcode",
   "description": "Remove code blocks based on environment configuration",
-  "version": "0.0.3a",
+  "version": "0.0.4",
   "homepage": "https://github.com/livedata/grunt-devcode",
   "author": {
     "name": "Krzysztof Antczak",
@@ -32,8 +32,7 @@
     "test": "grunt test"
   },
   "dependencies": {
-    "grunt": "~0.4.0",
-    "grunt-env": "~0.2.1"
+    "grunt": "~0.4.0"
   },
   "devDependencies": {},
   "keywords": [
@@ -48,6 +47,8 @@
     "exclude",
     "yeoman"
   ],
-  "_id": "grunt-devcode@0.0.3a",
-  "_from": "grunt-devcode"
+  "_id": "grunt-devcode@0.0.4",
+  "_from": "grunt-devcode",
+  "readme": "# Devcode v.0.0.3\n\nVersion with upgraded grunt dependency to 0.4.0, for older release please refer to https://github.com/livedata/grunt-devcode/tree/0.0.2\n\n# Usage with Yeoman grunt file:\n\nDevcode is  a fork of grunt-preprocess project, which has been re-written from scratch at the end. Due to the problems I had with that library, along with an excessive amount of code (additional dependency from \"preprocess\") and I suppose not fully tested functionality.\n\nCurrently, I am not interested in  using 'devcode' with standalone grunt, therefore I focused on using it paired up with yeoman. However, if you have any additional suggestions regarding configuration, or the code itself, feel free to comment/send pull requests.\n\n\nInstallation:\n```\n  npm install grunt-devcode\n```\n\nLoading devcode into grunt\n```\n  grunt.loadNpmTasks('grunt-devcode');\n  grunt.loadNpmTasks('grunt-env');\n```\n\nBuild task configuration (only for yeoman <1.0 !):\n```\n  grunt.renameTask('build', 'original-build');\n  grunt.registerTask('build', 'original-build env:build devcode');\n```\n\nBuild task configuration (for yeoman >=1.0.0-beta.3)\n```\n  // Build tasks list before\n  grunt.registerTask('build', [\n    'clean:dist',\n    'jshint',\n    'test',\n    'coffee',\n    'compass:dist',\n    'useminPrepare',\n    'imagemin',\n    'cssmin',\n    'htmlmin',\n    'concat',\n    'copy',\n    'cdnify',\n    'usemin',\n    'ngmin',\n    'uglify'\n  ]);\n\n  // Build tasks list AFTER\n  grunt.registerTask('build', [\n    'env:build', // environment configuration\n    'clean:dist',\n    'jshint',\n    'test',\n    'coffee',\n    'compass:dist',\n    'useminPrepare',\n    'imagemin',\n    'cssmin',\n    'htmlmin',\n    'concat',\n    'copy',\n    'devcode', // devcode... we need to register it AFTER dist/* exists (for .html files)\n    'cdnify',\n    'usemin',\n    'ngmin',\n    'uglify'\n  ]);\n```\n\n Devcode configuration:\n```\n  devcode :\n  {\n    files :\n    {\n      html: true,        // html files parsing?\n      js: true,          // javascript files parsing?\n      css: true,         // css files parsing?\n      clean: true,       // removes devcode comments even if code was not removed\n      block: {\n        open: 'devcode', // with this string we open a block of code\n        close: 'endcode' // with this string we close a block of code\n      },\n      dest: 'dist'       // default destination which is overwritten by environment variable\n    }\n  }\n\n  // environment settings\n  env : {\n    dev : {\n      NODE_ENV : 'development',\n      DEST     : 'temp'\n    },\n    build : {\n      NODE_ENV : 'production',\n      DEST     : 'dist'\n    }\n  }\n```\n\nDevcode usage (html files):\n```\n<!-- devcode: !production -->\n  <li class=\"right\"><a href=\"#settings\" data-toggle=\"tab\">Settings</a></li>\n<!-- endcode -->\n\nthis code will show for all environment types but production\n```\n\nDevcode usage (js and css files):\n```\n// devcode: !production\n  body {\n    background-color: red;\n  }\n// endcode\n\nthis code will show for all environment types but production\n```\n\nTest (only for yeoman <1.0 !):\n```\n  yeoman build\n```\n\nTest (for yeoman >=1.0.0-beta.3)\n```\n  grunt build\n```\n\n## Todo\n```\n- I was unable to find a way to use devcode with a yeoman server task. I will be happy to accept a pull request, if someone figures it out ;-)\n- Little code and config files improvements\n- Tests\n```\n",
+  "readmeFilename": "README.md"
 }

@@ -24,9 +24,13 @@ function init(grunt)
         var context = _.extend({},defaultEnv,process.env), files;
         context.NODE_ENV = context.NODE_ENV || 'development';
 
-        var cOpen   = this.data.block.open || 'devcode';
-        var cClose  = this.data.block.close || 'endcode';
-        var workDir = path.resolve(process.cwd(), context.DEST || this.data.dest);
+        var options = this.options();
+        context.NODE_ENV = options.env || context.NODE_ENV;
+
+        var cOpen   = options.block.open || 'devcode';
+        var cClose  = options.block.close || 'endcode';
+        var srcDir = path.resolve(process.cwd(), options.source);
+        var dstDir = path.resolve(process.cwd(), options.dest);
         var _this   = this;
 
         var replaceCode = function ( files, type )
@@ -44,13 +48,14 @@ function init(grunt)
 
             files.forEach(function(file)
             {
-                file = path.resolve(workDir,file);
-                var body = grunt.file.read(file);
+                var sfile = path.resolve(srcDir,file);
+                var tfile = path.resolve(dstDir,file);
+                var obody = grunt.file.read(sfile);
 
                 var regex = new RegExp(startblock + '[\\s\\S]*?' + endblock + '[\\s\\r\\n]?', 'g');
 
                 // replace code according to current environment
-                body = body.replace(regex, function($0, $1)
+                var body = obody.replace(regex, function($0, $1)
                 {
                     var m = $1.replace(/^\s+|\s+$/g, ''); // trim
 
@@ -64,28 +69,33 @@ function init(grunt)
                     }
                 });
 
-                if ( _this.data.clean == true ) // remove devcode tags
+                if ( options.clean == true ) // remove devcode tags
                 {
                     body = body.replace(new RegExp(startblock + '\\n?$', 'gm'), '');
                     body = body.replace(new RegExp(endblock   + '\\n?$', 'gm'), '');
                 }
 
-                grunt.file.write(file, body);
+                if ( obody != body )
+                {
+                    console.log ( 'Writing ', tfile );
+
+                    grunt.file.write(tfile, body);
+                }
             });
         };
 
         // { html: true, js: true, css: true }
-        if ( this.data.html == true )
+        if ( options.html == true )
         {
-            replaceCode(grunt.file.expand({cwd: workDir},'**/*.html'), 'html');
+            replaceCode(grunt.file.expand({cwd: srcDir},'**/*.html'), 'html');
         }
-        if ( this.data.js == true )
+        if ( options.js == true )
         {
-            replaceCode(grunt.file.expand({cwd: workDir},'**/*.js'), 'js');
+            replaceCode(grunt.file.expand({cwd: srcDir},'**/*.js'), 'js');
         }
-        if ( this.data.css == true )
+        if ( options.css == true )
         {
-            replaceCode(grunt.file.expand({cwd: workDir},'**/*.css'), 'css');
+            replaceCode(grunt.file.expand({cwd: srcDir},'**/*.css'), 'css');
         }
     });
 };

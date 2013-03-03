@@ -71,8 +71,8 @@ function init(grunt)
 
                 if ( options.clean == true ) // remove devcode tags
                 {
-                    body = body.replace(new RegExp(startblock + '\\n?$', 'gm'), '');
-                    body = body.replace(new RegExp(endblock   + '\\n?$', 'gm'), '');
+                    body = body.replace(new RegExp('^.*'+startblock + '\\n?', 'gm'), '');
+                    body = body.replace(new RegExp(endblock   + '\\n?', 'gm'), '');
                 }
 
                 if ( obody != body )

@@ -1,4 +1,4 @@
-# Devcode v.0.0.4
+# Devcode v.0.0.4 [![Dependency Status](https://david-dm.org/livedata/grunt-devcode.png)](https://david-dm.org/livedata/grunt-devcode)
 
 Changelog:
 v.0.0.4 - removed grunt-env dependency, changed configuration, devcode now supports 'grunt server'

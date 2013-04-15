@@ -87,15 +87,15 @@ function init(grunt)
         // { html: true, js: true, css: true }
         if ( options.html == true )
         {
-            replaceCode(grunt.file.expand({cwd: srcDir},'**/*.html'), 'html');
+            replaceCode(grunt.file.expand({cwd: srcDir, filter : "isFile"},'**/*.html'), 'html');
         }
         if ( options.js == true )
         {
-            replaceCode(grunt.file.expand({cwd: srcDir},'**/*.js'), 'js');
+            replaceCode(grunt.file.expand({cwd: srcDir, filter : "isFile"},'**/*.js'), 'js');
         }
         if ( options.css == true )
         {
-            replaceCode(grunt.file.expand({cwd: srcDir},'**/*.css'), 'css');
+            replaceCode(grunt.file.expand({cwd: srcDir, filter : "isFile"},'**/*.css'), 'css');
         }
     });
 };

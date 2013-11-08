@@ -83,19 +83,17 @@ function init(grunt)
                 }
             });
         };
-
-        // { html: true, js: true, css: true }
         if ( options.html == true )
         {
-            replaceCode(grunt.file.expand({cwd: srcDir, filter : "isFile"},'**/*.html'), 'html');
+            replaceCode(grunt.file.expand({filter : "isFile"}, srcDir), 'html');
         }
         if ( options.js == true )
         {
-            replaceCode(grunt.file.expand({cwd: srcDir, filter : "isFile"},'**/*.js'), 'js');
+            replaceCode(grunt.file.expand({filter : "isFile"}, srcDir), 'js');
         }
         if ( options.css == true )
         {
-            replaceCode(grunt.file.expand({cwd: srcDir, filter : "isFile"},'**/*.css'), 'css');
+            replaceCode(grunt.file.expand({filter : "isFile"}, srcDir), 'css');
         }
     });
 };

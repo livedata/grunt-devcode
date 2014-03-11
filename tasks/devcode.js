@@ -27,6 +27,8 @@ function init(grunt)
         var options = this.options();
         context.NODE_ENV = options.env || context.NODE_ENV;
 
+        var vars = options.vars || {};
+
         var cOpen   = options.block.open || 'devcode';
         var cClose  = options.block.close || 'endcode';
         var srcDir = path.resolve(process.cwd(), options.source);
@@ -59,13 +61,20 @@ function init(grunt)
                 {
                     var m = $1.replace(/^\s+|\s+$/g, ''); // trim
 
-                    if ( m.indexOf('!') == -1 )
+                    if ( m.indexOf('!') == 0 ) 
                     {
-                        if ( context.NODE_ENV != m ) return ''; else return $0;
+                        if ( '!'+context.NODE_ENV == m ) return ''; else return $0;
+                    }
+                    else if ( m.indexOf('=') == 0 )
+                    {
+                        var val = m.substr(1).split('.').reduce(function(obj, i) {
+                            return obj[i];
+                        }, vars);
+                        if ( typeof(val) !== 'undefined' ) return val; else return $0;
                     }
                     else
                     {
-                        if (  '!'+context.NODE_ENV == m ) return ''; else return $0;
+                        if ( context.NODE_ENV != m ) return ''; else return $0;
                     }
                 });
 

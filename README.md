@@ -24,6 +24,7 @@ Little watch task (livereload section) change:
     files: [
       '<%= yeoman.app %>/{,*/}*.html',
       '{.tmp,<%= yeoman.app %>}/styles/{,*/}*.css',
+      '{.tmp,<%= yeoman.app %>}/{,*/}*.php',
       '{.tmp,<%= yeoman.app %>}/scripts/{,*/}*.js',
       '<%= yeoman.app %>/images/{,*/}*.{png,jpg,jpeg}'
     ],
@@ -77,6 +78,7 @@ Build task configuration
         html: true,        // html files parsing?
         js: true,          // javascript files parsing?
         css: true,         // css files parsing?
+        php: true,         // php files parsing?
         clean: true,       // removes devcode comments even if code was not removed
         block: {
           open: 'devcode', // with this string we open a block of code
@@ -110,7 +112,7 @@ Devcode usage (html files):
 this code will show for all environment types but production
 ```
 
-Devcode usage (js and css files):
+Devcode usage (js, css and php files):
 ```
 // devcode: !production
   body {

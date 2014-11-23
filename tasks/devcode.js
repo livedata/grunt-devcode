@@ -42,7 +42,7 @@ function init(grunt)
                 var startblock = '<!--\\s*'+cOpen+':\\s*([^-]+)-->';
                 var endblock   = '<!--\\s*'+cClose+'\\s*-->';
             }
-            else if ( type == 'js' || type == 'css' )
+            else if ( type == 'js' || type == 'css' || type == 'php' )
             {
                 var startblock = '\/\/\\s*'+cOpen+':\\s*?([^\\n]+)';
                 var endblock   = '\/\/\\s*'+cClose+'\\s*';
@@ -105,6 +105,10 @@ function init(grunt)
         if ( options.css == true )
         {
             replaceCode(grunt.file.expand({cwd: srcDir, filter : "isFile"},'**/*.css'), 'css');
+        }
+        if ( options.php == true )
+        {
+            replaceCode(grunt.file.expand({cwd: srcDir, filter : "isFile"},'**/*.php'), 'php');
         }
     });
 };

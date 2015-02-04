@@ -19,6 +19,7 @@ module.exports = function(grunt) {
         html: true,
         js: true,
         css: true,
+        php: true,
         clean: true,
         block: {
           open: 'devcode',
